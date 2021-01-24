@@ -41,7 +41,8 @@ export class LeaveService {
    getAllLeave(): void {
     const accessToken = AuthService.getAccessToken();
     const headers = new HttpHeaders({ Authorization: `Bearer ${accessToken}` });
-    this.httpClient.get<Leave[]>(this.baseurl + '/api/create/leave/', {headers}).subscribe(
+    this.httpClient.get<Leave[]>(this.baseurl + '/api/list/leave/', {headers}).subscribe(
+    // this.httpClient.get<Leave[]>('http://localhost:8080/api/list/leave/', {headers}).subscribe(
       // this.httpClient.get<Examination[]>(this.API_URL).subscribe(
       data => {
         this.dataChange.next(data);
@@ -71,6 +72,7 @@ export class LeaveService {
   ): Observable<Leave> {
     const accessToken = AuthService.getAccessToken();
     const headers = new HttpHeaders({ Authorization: `Bearer ${accessToken}` });
+    // const url = 'http://localhost:8080/api/create/leave/';
     const url = this.baseurl + '/api/create/leave/';
     const formData = new FormData();
     // formData.append('approved', leave.approved);

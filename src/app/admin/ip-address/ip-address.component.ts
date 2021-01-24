@@ -35,7 +35,7 @@ export class IpAddressComponent implements OnInit {
     'select',
     'ip_address',
     'pub_date',
-    'actions',
+    // 'actions',
   ];
   exampleDatabase: AddressService | null;
   dataSource: ExampleDataSource | null;

@@ -70,7 +70,7 @@ export class LeaveFormDialogComponent implements OnInit {
     return this.fb.group({
       id: [this.leave.id],
       approved: [this.leave.approved],
-      employee: [this.leave.employee, [Validators.required]],
+      employee: [this.leave.employee],
       leave_date: [this.leave.leave_date],
       reason: [this.leave.reason, [Validators.required]],
       // quiz: [this.quiz.slug, [Validators.required]],
