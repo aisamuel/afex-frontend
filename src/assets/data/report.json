@@ -1,0 +1,34 @@
+[
+    {
+      "id": "001",
+      "student_name": "Adeniyi Samuel",
+      "classes": "Primary Four",
+      "total_fees_assigned": "test@email.com",
+      "balance_to_pay": "3234",
+      "payment_due_date": "2018-02-25T14:22:18Z",
+      "last_payment_date": "2018-02-25T14:22:18Z",
+      "status": "true"
+    },
+    {
+        "id": "002",
+        "student_name": "Adeniyi Peter",
+        "classes": "Primary Four",
+        "total_fees_assigned": "test@email.com",
+        "balance_to_pay": "3234",
+        "payment_due_date": "2018-02-25T14:22:18Z",
+        "last_payment_date": "2018-02-25T14:22:18Z",
+        "status": "true"
+    },
+    {
+        "id": "003",
+        "student_name": "Adeniyi Joseph",
+        "classes": "Primary Four",
+        "total_fees_assigned": "test@email.com",
+        "balance_to_pay": "3234",
+        "payment_due_date": "2018-02-25T14:22:18Z",
+        "last_payment_date": "2018-02-25T14:22:18Z",
+        "status": "true"
+    }
+   
+  ]
+  

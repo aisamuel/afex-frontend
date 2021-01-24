@@ -1,0 +1,31 @@
+
+[
+{
+    "id": "001",
+    "first_name": "Adeniyi",
+    "middle_name": "Samuel",
+    "last_name": "Ibukun",
+    "class_applied_for": "SS 3",
+    "exam_score": "2018",
+    "admit_applicant": true
+},
+{
+    "id": "002",
+    "first_name": "Adeniyi",
+    "middle_name": "Josiah",
+    "last_name": "Goodness",
+    "class_applied_for": "JSS1",
+    "exam_score": "201",
+    "admit_applicant": false
+},
+{
+    "id": "003",
+    "first_name": "Adeniyi",
+    "middle_name": "Peter",
+    "last_name": "Ayo",
+    "class_applied_for": "JSS 3",
+    "exam_score": "2023",
+    "admit_applicant": true
+}
+
+]

@@ -1,0 +1,28 @@
+[
+    {
+      "id": "001",
+      "name": "Primary One",
+      "available": true,
+      "fee_category": "23422344"
+    },
+    {
+        "id": "002",
+        "name": "Primary Two",
+        "available": true,
+        "fee_category": "23488344"
+    },
+    {
+        "id": "003",
+        "name": "Primary Three",
+        "available": true,
+        "fee_category": "234234344"
+    },
+    {
+        "id": "004",
+        "name": "Primary Four",
+        "available": true,
+        "fee_category": "23423234"
+    }
+    
+  ]
+  

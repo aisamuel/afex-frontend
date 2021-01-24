@@ -1,0 +1,33 @@
+[
+    {
+      "id": "001",
+      "first_name": "Primary One",
+      "middle_name": true,
+      "last_name": "Adeniyi",
+      "class_applied_for": "001",
+      "exam_score": "200",
+      "admit_applicant": true,
+      "fee_category": "23424244"
+    },
+    {
+        "id": "002",
+        "first_name": "Love",
+        "middle_name": "Joseph",
+        "last_name": "Adeniyi",
+        "class_applied_for": "003",
+        "exam_score": "200",
+        "admit_applicant": true,
+        "fee_category": "23434244"
+    },
+    {
+        "id": "003",
+        "first_name": "Treasure",
+        "middle_name": "Temi",
+        "last_name": "Arowosafe",
+        "class_applied_for": "002",
+        "exam_score": "200",
+        "admit_applicant": true,
+        "fee_category": "23422344"
+    }
+    
+  ]
