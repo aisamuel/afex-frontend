@@ -90,6 +90,7 @@ export class LeaveComponent implements OnInit {
           this.leaveService.getDialogData()
         );
         this.refreshTable();
+        this.loadData();
         this.showNotification(
           'snackbar-success',
           'Add Record Successfully...!!!',
@@ -120,6 +121,7 @@ export class LeaveComponent implements OnInit {
         ] = this.leaveService.getDialogData();
         // And lastly refresh table
         this.refreshTable();
+        this.loadData();
         this.showNotification(
           'black',
           'Edit Record Successfully...!!!',
