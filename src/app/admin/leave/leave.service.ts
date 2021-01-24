@@ -41,7 +41,7 @@ export class LeaveService {
     const accessToken = AuthService.getAccessToken();
     const headers = new HttpHeaders({ Authorization: `Bearer ${accessToken}` });
     // this.httpClient.get<Leave[]>('http://localhost:8080/api/list/leave/', {headers}).subscribe(
-    this.httpClient.get<Leave[]>(this.baseurl + '/api/list/leave/', {headers}).subscribe(
+    this.httpClient.get<Leave[]>(this.baseurl + '/api/list/leave/?expand=employee', {headers}).subscribe(
       // this.httpClient.get<Examination[]>(this.API_URL).subscribe(
       data => {
         this.dataChange.next(data);

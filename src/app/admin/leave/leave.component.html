@@ -127,13 +127,13 @@
                                                             (contextmenu)="onContextMenu($event, row)"> {{row.quiz}}
                                                         </mat-cell>
                                                     </ng-container> -->
-                                                    <!-- <ng-container matColumnDef="employee">
+                                                    <ng-container matColumnDef="employee">
                                                         <mat-header-cell *matHeaderCellDef mat-sort-header>Employee
                                                         </mat-header-cell>
                                                         <mat-cell *matCellDef="let row"
-                                                            (contextmenu)="onContextMenu($event, row)"> {{row.employee}}
+                                                            (contextmenu)="onContextMenu($event, row)"> {{row.employee.last_name + ' ' + row.employee.first_name}}
                                                         </mat-cell>
-                                                    </ng-container> -->
+                                                    </ng-container>
                                                     <ng-container matColumnDef="leave_date">
                                                         <mat-header-cell *matHeaderCellDef mat-sort-header>Date
                                                         </mat-header-cell>

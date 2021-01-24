@@ -38,7 +38,7 @@ export class LeaveComponent implements OnInit {
   //   leave_date: any;
   displayedColumns = [
     'select',
-    // 'employee',
+    'employee',
     'reason',
     'approved',
     'leave_date',

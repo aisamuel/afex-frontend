@@ -10,7 +10,7 @@ import {
 import { Leave } from '../../leave';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { formatDate } from '@angular/common';
-
+import { AuthService } from '../../../../services/auth.service';
 @Component({
   selector: 'app-leave-form-dialog',
   templateUrl: './leave-form-dialog.component.html',
@@ -70,7 +70,7 @@ export class LeaveFormDialogComponent implements OnInit {
     return this.fb.group({
       id: [this.leave.id],
       // approved: [this.leave.approved],
-      // employee: [this.leave.employee, [Validators.required]],
+      employee: [AuthService.getUser().id, [Validators.required]],
       leave_date: [this.leave.leave_date],
       reason: [this.leave.reason, [Validators.required]],
       // quiz: [this.quiz.slug, [Validators.required]],
@@ -108,6 +108,7 @@ export class LeaveFormDialogComponent implements OnInit {
 
     } else {
       console.log("it's adding");
+      console.log(this.leaveForm.value);
       this.leaveService.updateLeave(this.leaveForm.getRawValue());
       this.leaveService.addLeave(
         // this.feesForm.value,
@@ -206,6 +207,7 @@ export class LeaveFormDialogComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(AuthService.getUser().id);
   }
 
 }

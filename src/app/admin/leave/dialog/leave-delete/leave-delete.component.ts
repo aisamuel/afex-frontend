@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+// import { ProfessorsService } from '../../../all-professors/professors.service';
+import { LeaveService } from '../../leave.service';
+import { Leave } from '../../leave';
 
 @Component({
   selector: 'app-leave-delete',
@@ -7,7 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeaveDeleteComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<LeaveDeleteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public leaveService: LeaveService
+  ) {}
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  confirmDelete(): void {
+    this.leaveService.deleteLeave(this.data.id);
+  }
 
   ngOnInit(): void {
   }
