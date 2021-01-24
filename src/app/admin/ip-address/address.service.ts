@@ -48,7 +48,7 @@ export class AddressService {
     const accessToken = AuthService.getAccessToken();
     const headers = new HttpHeaders({ Authorization: `Bearer ${accessToken}` });
     // this.httpClient.get<Address[]>(this.baseurl + '/api_resources/create/department/').subscribe(
-    this.httpClient.get<Address[]>('http://localhost:8080/api/ip_address/', { headers }).subscribe(
+    this.httpClient.get<Address[]>('https://interviewdjangoapp.herokuapp.com/api/ip_address/', { headers }).subscribe(
       // this.httpClient.get<Examination[]>(this.API_URL).subscribe(
       data => {
         this.dataChange.next(data);
