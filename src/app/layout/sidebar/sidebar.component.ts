@@ -51,6 +51,10 @@ export class SidebarComponent implements OnInit {
       "step1",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/step1.svg")
     );
+    this.matIconRegistry.addSvgIcon(
+      "logoff",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/log-off.svg")
+    );
   }
   @HostListener('window:resize', ['$event'])
   windowResizecall(event) {
