@@ -1,0 +1,37 @@
+<div class="addContainer">
+    <div class="modalHeader">
+        <div class="editRowModal">
+            <div class="modalHeader clearfix">
+                <!-- <img [src]='patients.img' alt="avatar"> -->
+                <div class="modal-about">
+                    <div class="font-weight-bold p-t-5 p-l-10 font-17">
+                        {{giphyData.title}}</div>
+                </div>
+            </div>
+        </div>
+        <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content>
+        <mat-list>
+            <mat-list-item>Slug: {{giphyData.slug}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Source: {{giphyData.source}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Import Datetime: {{giphyData.import_datetime | date}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Url: <a>{{giphyData.url}}</a></mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Source post url:{{giphyData.source_post_url}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Type: {{giphyData.type}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Is Sticker: {{giphyData.is_sticker}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Rating: {{giphyData.rating}}</mat-list-item>
+            
+        </mat-list>
+    </div>
+</div>
+

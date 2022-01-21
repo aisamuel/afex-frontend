@@ -1,0 +1,55 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Giphy Search</h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <div class="materialTableHeader">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul class="header-buttons-left ml-0">
+                            
+                                            <li class="dropdown m-r-20">
+                                                <label for="search-input">
+                                                    <mat-icon svgIcon="search"
+                                                        class="material-icons search-icon" style="justify-self: end; vertical-align: text-bottom; color: #5E8CEE;"></mat-icon>
+                                                    </label>
+                                                <input placeholder="Search for patient name" type="text" (keyup)="onKey($event)"
+                                                    class="browser-default search-field"
+                                                    aria-label="Search box"
+                                                >
+                                            
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- context menu start -->
+                            <div *ngIf = "results && results.length != 0; then thenResultsBlock else elseNoResultsBlock"></div>
+                            <ng-template #thenResultsBlock>
+                                <app-giphy-list-card [results]="results"></app-giphy-list-card>
+                            </ng-template>
+                            <ng-template #elseNoResultsBlock>
+                                <p>No result found</p>
+                            </ng-template>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+    </div>
+</section>
