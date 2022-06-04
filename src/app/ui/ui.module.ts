@@ -12,7 +12,7 @@ import { UiRoutingModule } from './ui-routing.module';
 // import { LabelsComponent } from './labels/labels.component';
 // import { ListGroupComponent } from './list-group/list-group.component';
 // import { MediaObjectComponent } from './media-object/media-object.component';
-// import { ModalComponent } from './modal/modal.component';
+import { ModalComponent } from './modal/modal.component';
 // import { PreloadersComponent } from './preloaders/preloaders.component';
 // import { ProgressbarsComponent } from './progressbars/progressbars.component';
 // import { TabsComponent } from './tabs/tabs.component';
@@ -53,7 +53,7 @@ import { MatProgressButtonsModule } from 'mat-progress-buttons';
     // LabelsComponent,
     // ListGroupComponent,
     // MediaObjectComponent,
-    // ModalComponent,
+    ModalComponent,
     // PreloadersComponent,
     // ProgressbarsComponent,
     // TabsComponent,
