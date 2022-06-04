@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  giphy_api_key: "y2NWWur9YG9LeVZluzhhny3sOuHZnKy9"
+  endPoint: 'https://note-xyz.herokuapp.com/api/v1/',
 };
 
 /*

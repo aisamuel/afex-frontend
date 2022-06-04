@@ -17,7 +17,7 @@ export class AppComponent {
   constructor(public _router: Router, location: PlatformLocation, private spinner: NgxSpinnerService) {
     this._router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof NavigationStart) {
-        this.spinner.show();
+        // this.spinner.show();
         location.onPopState(() => {
           window.location.reload();
         });
@@ -26,7 +26,7 @@ export class AppComponent {
         );
       }
       if (routerEvent instanceof NavigationEnd) {
-        this.spinner.hide();
+        // this.spinner.hide();
       }
       window.scrollTo(0, 0);
     });

@@ -43,7 +43,7 @@ aw-wizard-navigation-bar ul.steps-indicator li a .label {
   min-height: inherit;
   max-height: inherit;
   // position: absolute;
-  width: 668px;
+  min-width: 668px;
   height: 290px;
   background: #FFFFFF;
   border: 0.3px solid #B7B7B7;
@@ -57,10 +57,10 @@ aw-wizard-navigation-bar ul.steps-indicator li a .label {
   border: 0.3px solid #B7B7B7;
   box-sizing: border-box;
   border-radius: 20px;
-  // padding-top: 80px;
-  // padding-bottom: 50px;
-  // padding-left: 164px;
-  // padding-right: 164px;
+  padding-top: 80px;
+  padding-bottom: 50px;
+  padding-left: 164px;
+  padding-right: 164px;
   font-family: Silka;
   font-style: normal;
   font-weight: 600;
@@ -73,7 +73,7 @@ aw-wizard-navigation-bar ul.steps-indicator li a .label {
 
 .mr-3 {
   // position: absolute;
-  width: 240px;
+  width: 280px;
   height: 68px;
   background: #2C61E4;
   border-radius: 10px;

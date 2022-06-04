@@ -2,17 +2,24 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
-    path: 'giphy-search',
-    loadChildren: () => import('./giphy-search/giphy-search.module').then(m => m.GiphySearchModule)
+    path: 'patient',
+    loadChildren: () => import('./patient/patient.module').then(m => m.PatientModule)
   },
   {
-    path: 'ui',
-    loadChildren: () => import('./ui/ui.module').then(m => m.UiModule)
+    path: 'note',
+    loadChildren: () => import('./notes/notes.module').then(m => m.NotesModule)
+  },
+  {
+    path: 'authentication',
+    loadChildren: () =>
+      import('./authentication/authentication.module').then(
+        m => m.AuthenticationModule
+      )
   },
  
   {
     path: '',
-    redirectTo: 'giphy-search',
+    redirectTo: 'authentication',
     pathMatch: 'full'
   }
 ];
