@@ -10,7 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 // import { TypographyComponent } from './typography/typography.component';
 // import { HelperClassesComponent } from './helper-classes/helper-classes.component';
 // import { AlertsComponent } from './alerts/alerts.component';
-import { AnimationsComponent } from './animations/animations.component';
+// import { AnimationsComponent } from './animations/animations.component';
 // import { BadgeComponent } from './badge/badge.component';
 // import { ButtonsComponent } from './buttons/buttons.component';
 // import { ProgressbarsComponent } from './progressbars/progressbars.component';
@@ -24,10 +24,10 @@ const routes: Routes = [
   //   path: 'alerts',
   //   component: AlertsComponent
   // },
-  {
-    path: 'animations',
-    component: AnimationsComponent
-  },
+  // {
+  //   path: 'animations',
+  //   component: AnimationsComponent
+  // },
   // {
   //   path: 'badges',
   //   component: BadgeComponent
