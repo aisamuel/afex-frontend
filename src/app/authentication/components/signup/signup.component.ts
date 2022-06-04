@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Register} from '../../models/authentication';
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -18,6 +20,8 @@ export class SignupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private authservice: AuthService,
+    private spinner: NgxSpinnerService,
+    private snackBar: MatSnackBar,
     private router: Router
   ) {}
   ngOnInit() {
@@ -27,7 +31,7 @@ export class SignupComponent implements OnInit {
         [Validators.required, Validators.email, Validators.minLength(5)]
       ],
       first_name: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       last_name: ['', Validators.required],
       cpassword: ['', Validators.required]
     });
@@ -37,7 +41,7 @@ export class SignupComponent implements OnInit {
   get f() {
     return this.registerForm.controls;
   }
-  onSubmit() {
+  public onSubmit(): void {
     this.submitted = true;
     // stop here if form is invalid
     const payload: Register = {
@@ -47,17 +51,34 @@ export class SignupComponent implements OnInit {
       email: this.registerForm.controls['email'].value,
     }
     if (this.registerForm.valid) {
-      console.log(payload)
+      this.spinner.show()
       this.authservice.register(payload).subscribe((res) => {
+        this.showNotification(
+          'snackbar-success',
+          'Account created Successfully...!!!',
+          'bottom',
+          'center'
+        );
+        this.router.navigate(['/authentication/signin']);
+        this.spinner.hide()
         console.log(res)
       },
       (err) => {
+        this.spinner.hide();
         console.log(err)
       });
-      // return;
-
+  
     } else {
-      this.router.navigate(['/dashboard/main']);
+      // this.router.navigate(['/dashboard/main']);
     }
+  }
+
+  private showNotification(colorName, text, placementFrom, placementAlign): void {
+    this.snackBar.open(text, '', {
+      duration: 2000,
+      verticalPosition: placementFrom,
+      horizontalPosition: placementAlign,
+      panelClass: colorName,
+    });
   }
 }

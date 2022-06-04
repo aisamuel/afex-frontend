@@ -46,14 +46,6 @@ export class NotesListComponent implements OnInit, AfterViewInit {
     private snackBar: MatSnackBar,
     public _notesService: NotesService
   ) {
-    // this.spinner.show();
-    this.route.paramMap.subscribe(params => {
-      if (params.get('id')) {
-        this.bankfinancialInstitutionId = params.get('id');
-        this.fid = Number(params.get('fid'))
-      }
-
-    });
     this.getAllNotes(this.bankfinancialInstitutionId, this.startDate, this.endDate);
   }
 

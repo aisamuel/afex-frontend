@@ -24,7 +24,7 @@ export class AuthService {
 
   public register(payload: Register): Observable<any> {
     const endpoint =
-      environment.endPoint + `user`;
+      environment.endPoint + `user/`;
     return this.httpClient.post<any>(endpoint, payload, { withCredentials: true });
   }
 

@@ -26,10 +26,10 @@ export class SigninComponent implements OnInit {
       email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
       password: ['', Validators.required]
     });
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    
   }
-  onSubmit() {
+
+  public onSubmit(): void {
     this.submitted = true;
     // stop here if form is invalid
     if (this.loginForm.valid) {
@@ -39,16 +39,9 @@ export class SigninComponent implements OnInit {
       }
       console.log(payload)
       this.authservice.login(payload).subscribe((res) => {
-        console.log(res)
-        // console.log('response headers', res.headers.keys())
         this.cookieService.set('username', payload.email);  
         this.cookieService.set('password', payload.password); 
         this.router.navigate(['/note']); 
-        // if(resp.headers.get('x-auth')){
-        //   this.cookieService.set("currentUser",resp.headers.get('x-auth'));
-        //   console.log(this.cookieService)
-        //   this.router.navigate(['/note']);
-        // }
       },
       (err) => {
         console.log(err)
