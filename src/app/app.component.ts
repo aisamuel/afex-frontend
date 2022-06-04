@@ -3,9 +3,7 @@ import {
   Event,
   Router,
   NavigationStart,
-  NavigationEnd,
 } from '@angular/router';
-import { NgxSpinnerService } from "ngx-spinner";
 import { PlatformLocation } from '@angular/common';
 @Component({
   selector: 'app-root',
