@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { environment } from 'src/environments/environment';
 import { CreateNote, Note } from '../models/note';
@@ -14,35 +14,29 @@ export class NotesService {
   ) { }
 
   public getNotes(fid: any, startDate: string, endDate: string): Observable<Note[]> {
-    // const httpOptions: Object = {
-    //   headers: new HttpHeaders({
-    //     'Accept': 'text/html',
-    //     'Content-Type': 'text/plain; charset=utf-8',
-    //     'key': '2os5C0TTSz4D9GgvqRmlEG3eVnVaOEKI'
-    //   }),
-    // };
     // const endpoint = `?startDate=${startDate}&endDate=${endDate}&instructedInstitutionCode=${fid}&successStatus=success`;
     const endpoint =
       environment.endPoint + `note/`;
-    return this.httpClient.get<Note[]>(endpoint);
+    return this.httpClient.get<Note[]>(endpoint, { withCredentials: true });
   }
 
   public addNote(payload: CreateNote): Observable<any> {
+    console.log(payload)
     const endpoint =
-      environment.endPoint + `note`;
-    return this.httpClient.post<any>(endpoint, payload);
+      environment.endPoint + `note/`;
+    return this.httpClient.post<any>(endpoint, payload, { withCredentials: true });
   }
 
   public editNote(payload: CreateNote, note_id: number): Observable<any> {
     const endpoint =
       environment.endPoint + `note/${note_id}`;
-    return this.httpClient.put<any>(endpoint, payload);
+    return this.httpClient.put<any>(endpoint, payload, { withCredentials: true });
   }
 
   public deleteNote(note_id: number): Observable<any> {
     const endpoint =
       environment.endPoint + `note/${note_id}`;
-    return this.httpClient.delete<any>(endpoint);
+    return this.httpClient.delete<any>(endpoint, { withCredentials: true });
   }
 
 }

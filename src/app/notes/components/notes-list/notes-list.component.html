@@ -26,7 +26,7 @@
                                                     <mat-icon svgIcon="search"
                                                         class="material-icons search-icon" style="justify-self: end; vertical-align: text-bottom; color: #5E8CEE;"></mat-icon>
                                                     </label>
-                                                <input placeholder="Search for patient name" type="text" (keyup)="applyFilter($event)"
+                                                <input placeholder="Search for a note" type="text" (keyup)="applyFilter($event)"
                                                     class="browser-default search-field"
                                                     aria-label="Search box"
                                                 >
@@ -128,27 +128,33 @@
                                     </mat-header-cell>
                                     <mat-cell *matCellDef="let row"
                                         (contextmenu)="onContextMenu($event, row)">
-                                        {{row.created}}</mat-cell>
+                                        {{row.created | date:'medium'}}</mat-cell>
                                 </ng-container>
                                 
                                 <ng-container matColumnDef="updated">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Updated
                                     </mat-header-cell>
                                     <mat-cell *matCellDef="let row"
-                                        (contextmenu)="onContextMenu($event, row)"> {{row.updated}}
+                                        (contextmenu)="onContextMenu($event, row)"> {{row.updated | date:'medium'}}
                                     </mat-cell>
                                 </ng-container>
                                 <!-- actions -->
                                 <ng-container matColumnDef="actions">
-                                    <mat-header-cell class="pr-0" *matHeaderCellDef>
+                                    <mat-header-cell class="pr-0" *matHeaderCellDef>Actions
                                     </mat-header-cell>
                                     <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
-                                        <!-- <button class="mr-3" [disabled]="!register.valid" mat-raised-button
-                                                        color="primary" awNextStep>Continue</button> -->
-                                        <button mat-raised-button color="primary" class="mr-3"
+                                        <button mat-icon-button color="accent" class="btn-tbl-edit"
                                             (click)="$event.stopPropagation()"
                                             (click)="editCall(row)">
-                                            View Profile
+                                            <mat-icon aria-label="Edit" class="col-white">edit
+                                            </mat-icon>
+                                        </button>
+                                        <button mat-icon-button color="accent"
+                                            class="btn-tbl-delete"
+                                            (click)="$event.stopPropagation()"
+                                            (click)="deleteItem(row)">
+                                            <mat-icon aria-label="Delete" class="col-white">delete
+                                            </mat-icon>
                                         </button>
                                     </mat-cell>
                                 </ng-container>

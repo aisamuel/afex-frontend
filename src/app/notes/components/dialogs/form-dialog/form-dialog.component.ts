@@ -9,6 +9,8 @@ import {
 } from '@angular/forms';
 import { Note, CreateNote } from '../../../models/note';
 import { formatDate } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-form-dialog',
@@ -26,6 +28,7 @@ export class FormDialogComponent {
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public notesService: NotesService,
+    private spinner: NgxSpinnerService,
     private fb: FormBuilder
   ) {
     // Set the defaults
@@ -33,6 +36,7 @@ export class FormDialogComponent {
 
     if (this.action === 'edit') {
       this.dialogTitle = data.note.title;
+      this.note_id = data.note.id;
       this.note = data.note;
     } else {
       this.dialogTitle = 'New Note';
@@ -70,11 +74,27 @@ export class FormDialogComponent {
     }
 
     public onSubmit(): void {
+      this.spinner.show();
       if (this.action === 'edit') {
-        this.notesService.editNote(this.stdForm.getRawValue(), this.note_id)
+        this.notesService.editNote(this.stdForm.getRawValue(), this.note_id).subscribe(
+          (res: any) => {
+            this.spinner.hide();
+            this.dialogRef.close(1);
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error)
+          }
+        );
       } else {
-        this.dialogTitle = 'New Note';
-        this.notesService.addNote(this.stdForm.getRawValue())
+        this.notesService.addNote(this.stdForm.getRawValue()).subscribe(
+          (res: any) => {
+            this.spinner.hide();
+            this.dialogRef.close(1);
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error)
+          }
+        );
       }
     }
 

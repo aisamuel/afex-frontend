@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NotesService } from '../../services/notes.service';
 import { NgxSpinnerService } from "ngx-spinner";
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Note } from '../../models/note';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -61,12 +61,12 @@ export class NotesListComponent implements OnInit, AfterViewInit {
 
   }
 
-  applyFilter(event: Event) {
+  public applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  addNew() {
+  public addNew(): void {
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
         note: null,
@@ -80,7 +80,7 @@ export class NotesListComponent implements OnInit, AfterViewInit {
         this.refreshTable();
         this.showNotification(
           'snackbar-success',
-          'Add Record Successfully...!!!',
+          'Add Note Successfully...!!!',
           'bottom',
           'center'
         );
@@ -88,7 +88,7 @@ export class NotesListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  editCall(row) {
+  public editCall(row): void {
     console.log(row)
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
@@ -102,14 +102,14 @@ export class NotesListComponent implements OnInit, AfterViewInit {
         this.refreshTable();
         this.showNotification(
           'black',
-          'Edit Record Successfully...!!!',
+          'Edit Note Successfully...!!!',
           'bottom',
           'center'
         );
       }
     });
   }
-  deleteItem(row) {
+  public deleteItem(row): void {
 
     const dialogRef = this.dialog.open(DeleteComponent, {
       data: row,
@@ -120,7 +120,7 @@ export class NotesListComponent implements OnInit, AfterViewInit {
         this.refreshTable();
         this.showNotification(
           'snackbar-danger',
-          'Delete Record Successfully...!!!',
+          'Delete Note Successfully...!!!',
           'bottom',
           'center'
         );
@@ -128,11 +128,13 @@ export class NotesListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  public getAllNotes(fid: any, startDate: string, endDate: string): void {
+  private getAllNotes(fid: any, startDate: string, endDate: string): void {
+    this.spinner.show();
     this._notesService.getNotes(fid, startDate, endDate).subscribe(
-      (res) => {
+      (res: any) => {
+        console.log(res)
         this.loading = true;
-        this.notes = res;
+        this.notes = res.data;
         this.dataSource = new MatTableDataSource<Note>(this.notes);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -146,11 +148,11 @@ export class NotesListComponent implements OnInit, AfterViewInit {
     );
   }
 
-  refreshTable() {
+  public refreshTable(): void {
     this.getAllNotes(this.bankfinancialInstitutionId, this.startDate, this.endDate);
   }
 
-  showNotification(colorName, text, placementFrom, placementAlign) {
+  private showNotification(colorName, text, placementFrom, placementAlign): void {
     this.snackBar.open(text, '', {
       duration: 2000,
       verticalPosition: placementFrom,

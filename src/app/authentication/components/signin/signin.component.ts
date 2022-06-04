@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Login } from '../../models/authentication';
-// import { CookieService } from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -18,7 +18,7 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private authservice: AuthService,
-    // private cookieService: CookieService,
+    private cookieService: CookieService,
     private router: Router
   ) {}
   ngOnInit() {
@@ -38,8 +38,12 @@ export class SigninComponent implements OnInit {
         email: this.loginForm.controls['email'].value,
       }
       console.log(payload)
-      this.authservice.login(payload).subscribe((resp) => {
-        console.log(resp)
+      this.authservice.login(payload).subscribe((res) => {
+        console.log(res)
+        // console.log('response headers', res.headers.keys())
+        this.cookieService.set('username', payload.email);  
+        this.cookieService.set('password', payload.password); 
+        this.router.navigate(['/note']); 
         // if(resp.headers.get('x-auth')){
         //   this.cookieService.set("currentUser",resp.headers.get('x-auth'));
         //   console.log(this.cookieService)
