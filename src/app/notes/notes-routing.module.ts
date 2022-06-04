@@ -12,10 +12,7 @@ const routes: Routes = [
     path: 'note-list',
     component: NotesListComponent
   },
-  // {
-  //   path: 'patient-create',
-  //   component: PatientCreateComponent
-  // },
+ 
 ];
 
 @NgModule({

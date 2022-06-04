@@ -14,19 +14,15 @@ import { PlatformLocation } from '@angular/common';
 })
 export class AppComponent {
   currentUrl: string;
-  constructor(public _router: Router, location: PlatformLocation, private spinner: NgxSpinnerService) {
+  constructor(public _router: Router, location: PlatformLocation) {
     this._router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof NavigationStart) {
-        // this.spinner.show();
         location.onPopState(() => {
           window.location.reload();
         });
         this.currentUrl = routerEvent.url.substring(
           routerEvent.url.lastIndexOf('/') + 1
         );
-      }
-      if (routerEvent instanceof NavigationEnd) {
-        // this.spinner.hide();
       }
       window.scrollTo(0, 0);
     });
