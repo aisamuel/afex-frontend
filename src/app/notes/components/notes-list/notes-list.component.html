@@ -37,10 +37,10 @@
                                             <div class="table-responsive">
                                                 <div class="materialTableHeader">
                                                     <div class="row">
-                                                        <div class="col-8">
+                                                        <div class="col-10">
                                                             <ul class="header-buttons-left ml-0">
                                                 
-                                                                <li class="dropdown m-r-20">
+                                                                <li class="dropdow">
                                                                     <label for="search-input">
                                                                         <mat-icon svgIcon="search"
                                                                             class="material-icons search-icon" style="justify-self: end; vertical-align: text-bottom; color: #5E8CEE;"></mat-icon>
@@ -49,6 +49,24 @@
                                                                         class="browser-default search-field"
                                                                         aria-label="Search box"
                                                                     >
+                                                                    <label for="date-from" class="m-l-10">Date From</label>
+                                                                        
+                                                                    <input placeholder="Search for a note" type="date" (keyup)="applyFilter($event)"
+                                                                        class="browser-default date-field"
+                                                                        aria-label="Search box"
+                                                                    >
+                                                                    <label for="date-to" class="m-l-10">Date To</label>
+                                                                        
+                                                                    <input placeholder="Search for a note" type="date" (keyup)="applyFilter($event)"
+                                                                        class="browser-default date-field"
+                                                                        aria-label="Search box"
+                                                                    >
+                                                                    
+                                                                    <button mat-raised-button color="primary" 
+                                                                        (click)="addNew()">
+                                                                        filter
+                                                                    </button>
+                                                                    
                                                                 
                                                                 </li>
                                                                 <!-- <li>
@@ -63,7 +81,7 @@
                                                                 </li> -->
                                                             </ul>
                                                         </div>
-                                                        <div class="col-4">
+                                                        <div class="col-2">
                                                             <ul class="header-buttons">
                                                                 <li>
                                                                     <div class="icon-button-demo">
