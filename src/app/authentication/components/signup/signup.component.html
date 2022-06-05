@@ -51,11 +51,9 @@
           <mat-error *ngIf="password2.invalid && !password2.hasError('required')">Passwords don't match</mat-error>
         </mat-form-field>
         <div class="flex-sb-m w-full p-t-15 p-b-20">
-          <div>
-            <span>Already Registered? <a routerLink="/authentication/signin">
-                Login
+            <span class="txt3">Already Registered? <a routerLink="/authentication/signin">
+              <strong class="text-primary">Login</strong> 
               </a></span>
-          </div>
         </div>
         <div class="container-login100-form-btn">
           <button mat-flat-button color="primary" class="login100-form-btn" type="submit">
