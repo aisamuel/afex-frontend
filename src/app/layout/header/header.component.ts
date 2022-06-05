@@ -7,8 +7,10 @@ import {
   Renderer2,
   AfterViewInit,
 } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RightSidebarService } from '../../shared/services/rightsidebar.service';
 import { ConfigService } from '../../shared/services/config.service';
+import { AuthService } from '../../authentication/services/auth.service';
 const document: any = window.document;
 
 @Component({
@@ -24,8 +26,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     public elementRef: ElementRef,
+    private authservice: AuthService,
     private dataService: RightSidebarService,
     private configService: ConfigService,
+    private router: Router
   ) { }
   notifications: any[] = [
     {
@@ -163,4 +167,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         .currentStatus._isScalar)
     );
   }
+
+  public logout(): void {
+    
+    this.authservice.logout().subscribe((res) => {
+      this.router.navigate(['/authentication/signin']);
+      
+    });
+  }
+   
 }

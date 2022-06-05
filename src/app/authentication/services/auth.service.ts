@@ -28,4 +28,17 @@ export class AuthService {
     return this.httpClient.post<any>(endpoint, payload, { withCredentials: true });
   }
 
+  public isLoggedIn(): boolean {
+    console.log(this.cookieService.get('username') && this.cookieService.get('password'))
+    if (this.cookieService.get('username') && this.cookieService.get('password')) {
+      return true
+    } 
+    return false
+  }
+
+  public logout(): Observable<any> {
+    this.cookieService.deleteAll()
+    return
+  }
+
 }

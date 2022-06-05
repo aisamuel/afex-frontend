@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeGuard } from '../shared/guards/home.guard';
 import { NotesListComponent } from './components/notes-list/notes-list.component';
 
 const routes: Routes = [
@@ -10,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'note-list',
-    component: NotesListComponent
+    component: NotesListComponent,
+    canActivate: [HomeGuard],
   },
  
 ];
