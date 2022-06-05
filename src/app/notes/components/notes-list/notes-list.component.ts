@@ -27,7 +27,6 @@ export class NotesListComponent implements OnInit, AfterViewInit {
   searchparam: string = "";
   startDate: string = "2021-02-19";
   endDate: string = "2021-02-30";
-  currency: string = "NGN";
   displayedColumns: string[] = ['id', 'title', 'content', 'user',  'created', 'updated', 'actions'];
   dataSource = new MatTableDataSource<Note>(this.notes);
   public loading: boolean = false;
@@ -46,7 +45,7 @@ export class NotesListComponent implements OnInit, AfterViewInit {
     private snackBar: MatSnackBar,
     public _notesService: NotesService
   ) {
-    this.getAllNotes(this.bankfinancialInstitutionId, this.startDate, this.endDate);
+    this.getAllNotes(this.startDate, this.endDate);
   }
 
   ngOnInit() {
@@ -120,9 +119,9 @@ export class NotesListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private getAllNotes(fid: any, startDate: string, endDate: string): void {
+  private getAllNotes(startDate: string, endDate: string): void {
     this.spinner.show();
-    this._notesService.getNotes(fid, startDate, endDate).subscribe(
+    this._notesService.getNotes(startDate, endDate).subscribe(
       (res: any) => {
         console.log(res)
         this.loading = true;
@@ -141,7 +140,7 @@ export class NotesListComponent implements OnInit, AfterViewInit {
   }
 
   public refreshTable(): void {
-    this.getAllNotes(this.bankfinancialInstitutionId, this.startDate, this.endDate);
+    this.getAllNotes(this.startDate, this.endDate);
   }
 
   private showNotification(colorName, text, placementFrom, placementAlign): void {

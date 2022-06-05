@@ -13,7 +13,7 @@ export class NotesService {
     private httpClient: HttpClient,
   ) { }
 
-  public getNotes(fid: any, startDate: string, endDate: string): Observable<Note[]> {
+  public getNotes(startDate: string, endDate: string): Observable<Note[]> {
     // const endpoint = `?startDate=${startDate}&endDate=${endDate}&instructedInstitutionCode=${fid}&successStatus=success`;
     const endpoint =
       environment.endPoint + `note/`;

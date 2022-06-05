@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Login } from '../../models/authentication';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -19,6 +21,8 @@ export class SigninComponent implements OnInit {
     private route: ActivatedRoute,
     private authservice: AuthService,
     private cookieService: CookieService,
+    private snackBar: MatSnackBar,
+    private spinner: NgxSpinnerService,
     private router: Router
   ) {}
   ngOnInit() {
@@ -31,24 +35,41 @@ export class SigninComponent implements OnInit {
 
   public onSubmit(): void {
     this.submitted = true;
+    this.spinner.show();
     // stop here if form is invalid
     if (this.loginForm.valid) {
       const payload: Login = {
         password: this.loginForm.controls['password'].value,
         email: this.loginForm.controls['email'].value,
       }
-      console.log(payload)
+      
       this.authservice.login(payload).subscribe((res) => {
         this.cookieService.set('username', payload.email);  
         this.cookieService.set('password', payload.password); 
         this.router.navigate(['/note']); 
+        this.spinner.hide();
       },
       (err) => {
-        console.log(err)
+        this.spinner.hide();
+        this.showNotification(
+          'snackbar-danger',
+          err.error.message,
+          'bottom',
+          'center'
+        );
       });
       // return;
     } else {
-      this.router.navigate(['/patient']);
+      // this.router.navigate(['/patient']);
     }
+  }
+
+  private showNotification(colorName, text, placementFrom, placementAlign): void {
+    this.snackBar.open(text, '', {
+      duration: 2000,
+      verticalPosition: placementFrom,
+      horizontalPosition: placementAlign,
+      panelClass: colorName,
+    });
   }
 }

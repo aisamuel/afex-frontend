@@ -51,34 +51,22 @@
                                                                     >
                                                                     <label for="date-from" class="m-l-10">Date From</label>
                                                                         
-                                                                    <input placeholder="Search for a note" type="date" (keyup)="applyFilter($event)"
+                                                                    <input placeholder="dd-mm-yyyy" type="date" name="begin"
+                                                                        value="" min="1997-01-01" max="2030-12-31"
                                                                         class="browser-default date-field"
                                                                         aria-label="Search box"
                                                                     >
                                                                     <label for="date-to" class="m-l-10">Date To</label>
                                                                         
-                                                                    <input placeholder="Search for a note" type="date" (keyup)="applyFilter($event)"
+                                                                    <input placeholder="dd-mm-yyyy" type="date" name="end"
+                                                                        value="" min="1997-01-01" max="2030-12-31"
                                                                         class="browser-default date-field"
                                                                         aria-label="Search box"
                                                                     >
                                                                     
-                                                                    <button mat-raised-button color="primary" 
-                                                                        (click)="addNew()">
-                                                                        filter
-                                                                    </button>
-                                                                    
                                                                 
                                                                 </li>
-                                                                <!-- <li>
-                                                                    <div class="icon-button-demo m-l-10"
-                                                                        [hidden]=!selection.hasValue()>
-                                                                        <button mat-mini-fab color="warn"
-                                                                            (click)="removeSelectedRows()">
-                                                                            <mat-icon class="col-white">delete
-                                                                            </mat-icon>
-                                                                        </button>
-                                                                    </div>
-                                                                </li> -->
+                                                                
                                                             </ul>
                                                         </div>
                                                         <div class="col-2">
@@ -86,20 +74,20 @@
                                                                 <li>
                                                                     <div class="icon-button-demo">
                                                                         <button mat-mini-fab color="primary"
+                                                                            (click)="refreshTable()">
+                                                                            <mat-icon class="col-white">filter_alt</mat-icon>
+                                                                        </button>
+                                                                    </div>
+                                                                    
+                                                                </li>
+                                                                <li>
+                                                                   <div class="icon-button-demo">
+                                                                        <button mat-mini-fab color="primary"
                                                                             (click)="addNew()">
                                                                             <mat-icon class="col-white">add</mat-icon>
                                                                         </button>
                                                                     </div>
                                                                 </li>
-                                                                <!-- <li>
-                                                                    <div class="icon-button-demo">
-                                                                        <button mat-mini-fab color="primary"
-                                                                            (click)="refresh()">
-                                                                            <mat-icon class="col-white">refresh
-                                                                            </mat-icon>
-                                                                        </button>
-                                                                    </div>
-                                                                </li> -->
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -242,7 +230,7 @@
                                                     No results
                                                 </div>
                                                 <mat-paginator #paginator [length]="notes?.length"
-                                                    [pageIndex]="0" [pageSize]="10"
+                                                    [pageIndex]="0" [pageSize]="100"
                                                     [pageSizeOptions]="[5, 10, 25, 100]">
                                                 </mat-paginator>
                                             </div>
@@ -263,12 +251,26 @@
                                                             <ul class="header-buttons-left ml-0">
                                                 
                                                                 <li class="dropdown m-r-20">
-                                                                    <label for="search-input">
+                                                                    <!-- <label for="search-input">
                                                                         <mat-icon svgIcon="search"
                                                                             class="material-icons search-icon" style="justify-self: end; vertical-align: text-bottom; color: #5E8CEE;"></mat-icon>
                                                                         </label>
                                                                     <input placeholder="Search for a note" type="text" (keyup)="applyFilter($event)"
                                                                         class="browser-default search-field"
+                                                                        aria-label="Search box"
+                                                                    > -->
+                                                                    <label for="date-from" class="m-l-10">Date From</label>
+                                                                        
+                                                                    <input placeholder="dd-mm-yyyy" type="date" name="begin"
+                                                                        value="" min="1997-01-01" max="2030-12-31"
+                                                                        class="browser-default date-field"
+                                                                        aria-label="Search box"
+                                                                    >
+                                                                    <label for="date-to" class="m-l-10">Date To</label>
+                                                                        
+                                                                    <input placeholder="dd-mm-yyyy" type="date" name="end"
+                                                                        value="" min="1997-01-01" max="2030-12-31"
+                                                                        class="browser-default date-field"
                                                                         aria-label="Search box"
                                                                     >                  
                                                                 </li>
@@ -278,6 +280,15 @@
                                                             <ul class="header-buttons">
                                                                 <li>
                                                                     <div class="icon-button-demo">
+                                                                        <button mat-mini-fab color="primary"
+                                                                            (click)="refreshTable()">
+                                                                            <mat-icon class="col-white">filter_alt</mat-icon>
+                                                                        </button>
+                                                                    </div>
+                                                                    
+                                                                </li>
+                                                                <li>
+                                                                   <div class="icon-button-demo">
                                                                         <button mat-mini-fab color="primary"
                                                                             (click)="addNew()">
                                                                             <mat-icon class="col-white">add</mat-icon>
@@ -291,47 +302,38 @@
 
                                             
                                                 
-                                                <div class="row">
+                                                <div class="row g-p">
                                                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" *ngFor="let note of notes">
                                                         <!-- <div > -->
-                                                            <mat-card (click)="editCall(note)">
+                                                            <mat-card>
                                                                 <mat-card-header>
                                                                     <img mat-card-avatar src="assets/images/user/user3.jpg">
                                                                     <mat-card-title>{{note?.title}}</mat-card-title>
-                                                                    <mat-card-subtitle>By: {{note?.user.first_name}} {{note?.user.last_name}}</mat-card-subtitle>
+                                                                    <mat-card-subtitle>By: {{note?.user.first_name}} {{note?.user.last_name}} <br>
+                                                                                       Created on: {{note?.created | date:'medium'}}
+                                                                    </mat-card-subtitle>
                                                                 </mat-card-header>
-                                                                <!-- <img mat-card-image src="assets/images/image-gallery/5.jpg"> -->
                                                                 <mat-card-content>
                                                                     <p>{{note?.content}}</p>
                                                                 </mat-card-content>
                                                                 <mat-divider></mat-divider>
                                                                 <mat-card-actions>
                                                                     <div fxLayout="row">
-                                                                        <!-- <button mat-icon-button>
-                                                                            {{note?.created}}
-                                                                            <mat-icon class="col-blue">share</mat-icon>
-                                                                        </button>
-                                                                        <button mat-icon-button>
-                                                                            <mat-icon class="col-red">favorite</mat-icon>
-                                                                        </button> -->
                                                                         <span fxFlex></span>
-                                                                        <button mat-button>
-                                                                            details
+                                                                        <button mat-button
+                                                                            (click)="editCall(note)"
+                                                                        >
+                                                                            Edit
                                                                         </button>
-                                                                        <button mat-button>
-                                                                            save
+                                                                        <button mat-button
+                                                                            (click)="deleteItem(note)">
+                                                                            Delete
                                                                         </button>
                                                                     </div>
                                                                 </mat-card-actions>
                                                             </mat-card>
                                                         </div>
-                                                    <!-- </div> -->
-                                                </div>
-                                                    
-
-                                                
-
-                                        
+                                                </div>   
                                             </div>
                                         </div>
                                     </div>

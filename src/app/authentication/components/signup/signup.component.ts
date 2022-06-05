@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit {
       email: this.registerForm.controls['email'].value,
     }
     if (this.registerForm.valid) {
-      this.spinner.show()
+      this.spinner.show();
       this.authservice.register(payload).subscribe((res) => {
         this.showNotification(
           'snackbar-success',
@@ -60,11 +60,18 @@ export class SignupComponent implements OnInit {
           'center'
         );
         this.router.navigate(['/authentication/signin']);
-        this.spinner.hide()
+        this.spinner.hide();
         console.log(res)
       },
       (err) => {
         this.spinner.hide();
+        this.spinner.hide();
+        this.showNotification(
+          'snackbar-danger',
+          err.error.message,
+          'bottom',
+          'center'
+        );
         console.log(err)
       });
   
