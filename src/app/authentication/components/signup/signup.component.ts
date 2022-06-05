@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Register} from '../../models/authentication';
 import { NgxSpinnerService } from "ngx-spinner";
+
+export const passwordMatchValidator: ValidatorFn = (formGroup: FormGroup): ValidationErrors | null => {
+  if (formGroup.get('password').value === formGroup.get('cpassword').value)
+    return null;
+  else
+    return {passwordMismatch: true};
+};
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -31,16 +38,28 @@ export class SignupComponent implements OnInit {
         [Validators.required, Validators.email, Validators.minLength(5)]
       ],
       first_name: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]],
       last_name: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       cpassword: ['', Validators.required]
-    });
+    }, {validator: passwordMatchValidator});
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   get f() {
     return this.registerForm.controls;
   }
+  /* Shorthands for form controls (used from within template) */
+  get password() { return this.registerForm.get('password'); }
+  get password2() { return this.registerForm.get('cpassword'); }
+
+  /* Called on each input in either password field */
+  onPasswordInput() {
+    if (this.registerForm.hasError('passwordMismatch'))
+      this.password2.setErrors([{'passwordMismatch': true}]);
+    else
+      this.password2.setErrors(null);
+  }
+
   public onSubmit(): void {
     this.submitted = true;
     // stop here if form is invalid
